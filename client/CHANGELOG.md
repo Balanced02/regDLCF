@@ -1,8 +1,37 @@
 ## [CoreUI](https://coreui.io/) for [react](./REACT.md) changelog
 
-##### `v2-next`
+##### `v2.0.8`
+- fix(User): add missing unique key prop
+- fix(Login): add missing form and autoComplete
+- fix(Register): add missing form and autoComplete
+- chore: update `@coreui/react` to `2.0.5`
+- chore: update `bootstrap` to `4.1.3`
+- chore: update `reactstrap` to `6.3.1`
+- chore: update `babel-jest` to `23.4.2`
+
+##### `v2.0.5`
+- feat(router): Users/User Breadcrumb example with `/users/:id`
+- chore: update `@coreui/react` to `2.0.4`,
+- chore: update `prop-types` to `15.6.2`
+- chore: update `react` to `16.4.1`
+- chore: update `react-dom` to `16.4.1`
+- chore: update `react-test-renderer` to `16.4.1`
+- chore: update `npm-run-all` to `4.1.3`
+- chore: add `.env` file
+
+##### `v2.0.4`
 - feat(Forms): FormFeedback valid, toggleFade
 - refactor(Cards): toggleFade
+- chore: update `@coreui/coreui` to `2.0.2`,
+- chore: update `@coreui/react` to `2.0.1`,
+- chore: update `classnames` to `2.2.6`,
+- chore: update `core-js` to `2.5.7`,
+- chore: update `react` to `16.4.0`,
+- chore: update `react-dom` to `16.4.0`,
+- chore: update `react-router-dom` to `4.3.1`,
+- chore: update `react-test-renderer` to `16.4.0`,
+- chore: update `reactstrap` to `6.1.0`,
+- chore: update `babel-jest` to `23.0.1`,
 
 ##### `v2.0.3`
 - refactor: disable `ServiceWorker` by default
