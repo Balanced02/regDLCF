@@ -6,9 +6,13 @@ import cfg from "./controllers/config";
 import jwt from "jsonwebtoken";
 import PassportJWT from "passport-jwt";
 import Users from "./models/Users";
-
+import json2xls from "json2xls";
 import { Register, Logout, AuthMe } from "./controllers/auth";
-import { GetParticipants, CreateParticipant } from "./controllers/api";
+import {
+  GetParticipants,
+  CreateParticipant,
+  DownloadParticipantList
+} from "./controllers/api";
 
 const router = Router();
 const api = Router();
@@ -42,9 +46,8 @@ passport.use(
 
 router.use(express.static(path.join(__dirname, "../client/build")));
 
-//image upload temporary function
-
 router.use("/api", api);
+api.use(json2xls.middleware);
 
 api.get("/me", AuthMe);
 api.get("/auth/logout", Logout);
@@ -79,5 +82,6 @@ api.post("/auth/login", function(req, res, next) {
 
 api.post("/getParticipants/:id", GetParticipants);
 api.post("/createParticipant", CreateParticipant);
+api.get("/downloadParticipantLists", DownloadParticipantList);
 
 export default router;

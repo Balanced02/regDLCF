@@ -225,7 +225,7 @@ export default ({
         </TabPane>
         <TabPane tabId="2">
           <FormGroup>
-            <Label for="exampleEmail">PPA (if Serving)</Label>
+            <Label for="exampleEmail">PPA</Label>
             <Input
               type="text"
               name="institution"

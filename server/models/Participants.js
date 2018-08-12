@@ -3,7 +3,7 @@ import uuid from "uuid/v4";
 
 const Schema = mongoose.Schema;
 
-const productsSchema = new Schema({
+const participantsSchema = new Schema({
   sid: {
     type: String,
     required: true,
@@ -60,4 +60,4 @@ const productsSchema = new Schema({
   }
 });
 
-export default mongoose.model("Products", productsSchema);
+export default mongoose.model("Participants", participantsSchema);

@@ -11,7 +11,7 @@ import {
 } from "reactstrap";
 import { connect } from "react-redux";
 import ParticipantList from "../../../components/ParticipantList";
-import { callApi } from "../../../utils/index";
+import { callApi, callApiToDownloadExcel } from "../../../utils/index";
 import { showError, showInfo } from "../../../actions/feedback";
 import Loading from "../../../components/loading";
 
@@ -71,6 +71,17 @@ class ParticipantLists extends Component {
         this.props.dispatch(showError("Error deleting, pls refresh the page"));
         this.toggleDeletePrompt();
         this.clearSelectedState();
+      });
+  }
+
+  downloadList() {
+    callApiToDownloadExcel("/downloadParticipantLists")
+      .then(data => {
+        console.log(data);
+        this.props.dispatch(showInfo("Downloading"));
+      })
+      .catch(err => {
+        this.props.dispatch(showError("Some error occured"));
       });
   }
 
@@ -150,7 +161,10 @@ class ParticipantLists extends Component {
           <CardBlock>
             <Row>
               {this.state.participantList.length && !this.state.fetching ? (
-                <ParticipantList data={this.state.participantList} />
+                <ParticipantList
+                  data={this.state.participantList}
+                  downloadList={() => this.downloadList()}
+                />
               ) : this.state.fetching ? (
                 <Loading />
               ) : (

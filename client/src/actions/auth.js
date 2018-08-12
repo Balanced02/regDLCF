@@ -51,7 +51,7 @@ export const startLogin = formData => {
     callApi("/auth/login", formData, "POST")
       .then(data => {
         localStorage.setItem("jwt", data.token);
-        localStorage.setItem("wiwaHub", JSON.stringify(data.user._doc));
+        localStorage.setItem("rompiendo", JSON.stringify(data.user._doc));
         dispatch(stopLoading());
         dispatch(login(data.user));
         history.push("/dashboard");
