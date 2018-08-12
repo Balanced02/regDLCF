@@ -1,11 +1,9 @@
 import React, { Component } from "react";
 import { Card, Row, Col, CardBody } from "reactstrap";
 import { connect } from "react-redux";
-import { callApiWithFormData, picUpload } from "../../../utils/index";
+import { callApi } from "../../../utils/index";
 import { showError, showInfo } from "../../../actions/feedback";
-import Prompt from "../../../components/Prompt";
-// import AddProduct from "../../../components/NewProduct";
-import ProductDetails from "../../../components/ProductDetails.jsx";
+import ParticipantDetails from "../../../components/ParticipantDetails.jsx";
 
 class NewProduct extends Component {
   constructor(props) {
@@ -16,9 +14,17 @@ class NewProduct extends Component {
       fadeIn: true,
       timeout: 300,
       inputs: {
-        negotiable: true,
+        fullName: "",
         phoneNumber: "",
-        state: "Nasarawa State"
+        gender: "",
+        state: "Nasarawa State",
+        localGovtArea: "",
+        denomination: "",
+        languagesSpoken: "",
+        institution: "",
+        institutionAddress: "",
+        level: "",
+        category: "FYB"
       },
       fetching: false,
       activeTab: "1"
@@ -77,33 +83,45 @@ class NewProduct extends Component {
   }
 
   submit() {
-    let check = Object.values(this.state.inputs);
-    check = check.every(data => data !== "");
-    if (!check) {
-      this.props.dispatch(showError("All fields must be filled"));
+    const {
+      fullName,
+      phoneNumber,
+      gender,
+      state,
+      denomination
+    } = this.state.inputs;
+    if (!fullName) {
+      this.props.dispatch(showError("Provide name"));
       return;
     }
-    if (!this.state.uploadFile) {
-      this.props.dispatch(showError("You must upload an image"));
+    if (!phoneNumber) {
+      this.props.dispatch(showError("Provide Phone Number"));
+      return;
+    }
+    if (!gender) {
+      this.props.dispatch(showError("Provide gender"));
+      return;
+    }
+    if (!state) {
+      this.props.dispatch(showError("Provide State of Origin"));
+      return;
+    }
+    if (!denomination) {
+      this.props.dispatch(showError("Provide denomination"));
       return;
     } else {
       this.setState({
         ...this.state,
         fetching: true
       });
-      callApiWithFormData(
-        "/createProduct",
-        this.state.inputs,
-        "POST",
-        this.state.uploadFile
-      )
+      callApi("/createParticipant", this.state.inputs, "POST")
         .then(data => {
-          this.props.dispatch(showInfo("Ad Successfully Posted"));
+          this.props.dispatch(showInfo("Participant Successfully Registered"));
           this.clearFetching();
           this.resetState();
         })
         .catch(err => {
-          this.props.dispatch(showError("Error Uploading Image"));
+          this.props.dispatch(showError("Error Creating Participant"));
           this.clearFetching();
         });
     }
@@ -118,10 +136,17 @@ class NewProduct extends Component {
       uploading: false,
       imageUrl: "",
       inputs: {
-        negotiable: true,
+        fullName: "",
         phoneNumber: "",
         gender: "",
-        fullName: ""
+        state: "Nasarawa State",
+        localGovtArea: "",
+        denomination: "",
+        languagesSpoken: "",
+        institution: "",
+        institutionAddress: "",
+        level: "",
+        category: "FYB"
       },
       activeTab: "1"
     };
@@ -136,10 +161,14 @@ class NewProduct extends Component {
     });
   }
 
-  toggle = tab => {
+  toggle = (tab, tabName) => {
     if (this.state.activeTab !== tab) {
       this.setState({
-        activeTab: tab
+        activeTab: tab,
+        inputs: {
+          ...this.state.inputs,
+          category: tabName
+        }
       });
     }
   };
@@ -152,7 +181,7 @@ class NewProduct extends Component {
           <CardBody>
             <Row>
               <Col>
-                <ProductDetails
+                <ParticipantDetails
                   data={inputs}
                   handleInputChange={e => this.handleInputChange(e)}
                   submit={() => this.submit()}

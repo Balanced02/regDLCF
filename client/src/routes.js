@@ -1,34 +1,41 @@
-import React from 'react';
-import Loadable from 'react-loadable'
-import ReactLoading from 'react-loading'
+import React from "react";
+import Loadable from "react-loadable";
+import ReactLoading from "react-loading";
 
-import DefaultLayout from './containers/DefaultLayout';
+import DefaultLayout from "./containers/DefaultLayout";
 
 function Loading() {
-  return <ReactLoading type='bubbles' color='#20a8d8' style={{flex:1}} />
+  return <ReactLoading type="bubbles" color="#20a8d8" style={{ flex: 1 }} />;
 }
 
-const ProductList = Loadable({
-  loader: () => import('./views/Base/ProductList'),
-  loading: Loading,
+const ParticipantList = Loadable({
+  loader: () => import("./views/Base/ParticipantList"),
+  loading: Loading
 });
 
 const Dashboard = Loadable({
-  loader: () => import('./views/Dashboard'),
-  loading: Loading,
+  loader: () => import("./views/Dashboard"),
+  loading: Loading
 });
 
-const NewProduct = Loadable({
-  loader: () => import('./views/Base/NewProduct/index.jsx'),
+const NewParticipant = Loadable({
+  loader: () => import("./views/Base/NewParticipant/index.jsx"),
   loading: Loading
-})
-
+});
 
 const routes = [
-  { path: '/', exact: true, name: 'Home', component: DefaultLayout },
-  { path: '/dashboard', name: 'Dashboard', component: Dashboard },
-  { path: '/productList', name: 'Product List', component: ProductList },
-  { path: '/addProduct', name: 'New Product', component: NewProduct },
+  { path: "/", exact: true, name: "Home", component: DefaultLayout },
+  { path: "/dashboard", name: "Dashboard", component: Dashboard },
+  {
+    path: "/participantList",
+    name: "Product List",
+    component: ParticipantList
+  },
+  {
+    path: "/addParticipant",
+    name: "Register Participant",
+    component: NewParticipant
+  }
 ];
 
 export default routes;

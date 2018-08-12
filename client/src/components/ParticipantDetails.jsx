@@ -159,7 +159,7 @@ export default ({
           <NavLink
             className={classnames({ active: activeTab === "1" })}
             onClick={() => {
-              toggle("1");
+              toggle("1", "FYS");
             }}
           >
             FYS
@@ -169,17 +169,27 @@ export default ({
           <NavLink
             className={classnames({ active: activeTab === "2" })}
             onClick={() => {
-              toggle("2");
+              toggle("2", "PCM");
             }}
           >
-            PCM & CM
+            CM
           </NavLink>
         </NavItem>
         <NavItem>
           <NavLink
             className={classnames({ active: activeTab === "3" })}
             onClick={() => {
-              toggle("3");
+              toggle("3", "PCM");
+            }}
+          >
+            PCM
+          </NavLink>
+        </NavItem>
+        <NavItem>
+          <NavLink
+            className={classnames({ active: activeTab === "4" })}
+            onClick={() => {
+              toggle("4", "Others");
             }}
           >
             Others
@@ -192,10 +202,10 @@ export default ({
             <Label for="exampleEmail">School Name</Label>
             <Input
               type="text"
-              name="school"
+              name="institution"
               id="exampleEmail"
               placeholder="School Name"
-              value={data.school}
+              value={data.institution}
               onChange={e => handleInputChange(e)}
             />
             <FormText color="muted">
@@ -206,9 +216,9 @@ export default ({
             <Label for="exampleEmail">School Address</Label>
             <Input
               type="textarea"
-              name="schoolAddress"
+              name="institutionAddress"
               id="exampleEmail"
-              value={data.schoolAddress}
+              value={data.institutionAddress}
               onChange={e => handleInputChange(e)}
             />
           </FormGroup>
@@ -218,10 +228,10 @@ export default ({
             <Label for="exampleEmail">PPA (if Serving)</Label>
             <Input
               type="text"
-              name="ppa"
+              name="institution"
               id="exampleEmail"
               placeholder="Place of Primary Assignment"
-              value={data.ppa}
+              value={data.institution}
               onChange={e => handleInputChange(e)}
             />
           </FormGroup>
@@ -229,22 +239,45 @@ export default ({
             <Label for="exampleEmail">PPA Address</Label>
             <Input
               type="textarea"
-              name="ppaAddress"
+              name="institutionAddress"
               id="exampleEmail"
-              value={data.ppaAddress}
+              value={data.institutionAddress}
               onChange={e => handleInputChange(e)}
             />
           </FormGroup>
         </TabPane>
         <TabPane tabId="3">
           <FormGroup>
+            <Label for="exampleEmail">School Graduated From</Label>
+            <Input
+              type="text"
+              name="institution"
+              id="exampleEmail"
+              placeholder="School Name"
+              value={data.institution}
+              onChange={e => handleInputChange(e)}
+            />
+          </FormGroup>
+          <FormGroup>
+            <Label for="exampleEmail">School Address</Label>
+            <Input
+              type="textarea"
+              name="institutionAddress"
+              id="exampleEmail"
+              value={data.institutionAddress}
+              onChange={e => handleInputChange(e)}
+            />
+          </FormGroup>
+        </TabPane>
+        <TabPane tabId="4">
+          <FormGroup>
             <Label for="exampleEmail">School</Label>
             <Input
               type="text"
-              name="school"
+              name="institution"
               id="exampleEmail"
               placeholder="School Name"
-              value={data.school}
+              value={data.institution}
               onChange={e => handleInputChange(e)}
             />
           </FormGroup>
@@ -266,9 +299,9 @@ export default ({
             <Label for="exampleEmail">School Address</Label>
             <Input
               type="textarea"
-              name="schoolAddress"
+              name="institutionAddress"
               id="exampleEmail"
-              value={data.schoolAddress}
+              value={data.institutionAddress}
               onChange={e => handleInputChange(e)}
             />
           </FormGroup>

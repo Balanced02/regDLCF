@@ -8,14 +8,13 @@ import PassportJWT from "passport-jwt";
 import Users from "./models/Users";
 
 import { Register, Logout, AuthMe } from "./controllers/auth";
-import { GetProducts, ChangePremium, } from "./controllers/api";
+import { GetParticipants, CreateParticipant } from "./controllers/api";
 
 const router = Router();
 const api = Router();
 
 const JWTStrategy = PassportJWT.Strategy;
 const ExtractJWT = PassportJWT.ExtractJwt;
-
 
 // PassportJS Setup
 router.use(passport.initialize());
@@ -78,7 +77,7 @@ api.post("/auth/login", function(req, res, next) {
   })(req, res);
 });
 
-api.post('/getProducts/:id', GetProducts);
-api.post('/changePremium', ChangePremium);
+api.post("/getParticipants/:id", GetParticipants);
+api.post("/createParticipant", CreateParticipant);
 
 export default router;
