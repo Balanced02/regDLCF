@@ -11,9 +11,9 @@ export default ({ data }) => (
             <th>Full Name</th>
             <th>Phone</th>
             <th>Denomination</th>
-            <th>State</th>
             <th>Category</th>
             <th>Institution/PPA</th>
+            <th>Reg. Officer</th>
           </tr>
         </thead>
         <tbody>
@@ -23,9 +23,9 @@ export default ({ data }) => (
               <td> {participant.fullName} </td>
               <td> {participant.phoneNumber} </td>
               <td> {participant.denomination} </td>
-              <td> {participant.state} </td>
               <td> {participant.category} </td>
               <td> {participant.institution} </td>
+              <td> {participant.registrationOfficer} </td>
             </tr>
           ))}
         </tbody>
