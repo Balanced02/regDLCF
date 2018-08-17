@@ -11,7 +11,8 @@ import { Register, Logout, AuthMe } from "./controllers/auth";
 import {
   GetParticipants,
   CreateParticipant,
-  DownloadParticipantList
+  DownloadParticipantList,
+  GetSummary
 } from "./controllers/api";
 
 const router = Router();
@@ -83,5 +84,6 @@ api.post("/auth/login", function(req, res, next) {
 api.post("/getParticipants/:id", GetParticipants);
 api.post("/createParticipant", CreateParticipant);
 api.get("/downloadParticipantLists", DownloadParticipantList);
+api.get('/getSummary', GetSummary)
 
 export default router;

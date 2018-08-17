@@ -12,7 +12,7 @@ export const CreateParticipant = (req, res) => {
     .then(data => res.json(data))
     .catch(err => {
       console.log(err);
-      res.status(500).json({ err: err, message: err.message });
+      return res.status(500).json({ err: err, message: err.message });
     });
 };
 
@@ -90,7 +90,7 @@ export const GetParticipants = async (req, res) => {
     });
   } catch (err) {
     console.log(err);
-    res.status(500).json({
+    return res.status(500).json({
       message: "Error Loading Participant List",
       error: err.message
     });
@@ -100,13 +100,14 @@ export const GetParticipants = async (req, res) => {
 export const DeleteParticipant = (req, res) => {
   let _id = req.params.id;
   Participants.findOneAndRemove({ _id })
-    .then(data =>
+    .then(() =>
       res.json({
         message: "Deleted Successfully"
       })
     )
     .catch(err => {
-      res.status(500).json({
+      console.log(err);
+      return res.status(500).json({
         message: "Unable to delete Participant",
         error: err.message
       });
@@ -142,33 +143,43 @@ export const DownloadParticipantList = async (req, res) => {
 
     const formattedParticipants = participants.map((participant, i) => {
       if (participant._doc) {
-        delete participant._doc._id;
-        delete participant._doc.sid;
-        delete participant._doc._v;
-        participant._doc.id = i + 1;
-        return participant._doc;
+        let participantDetail = {};
+        participantDetail["Id"] = i + 1;
+        participantDetail["Full Name"] = participant._doc.fullName;
+        participantDetail["Phone Number"] = participant._doc.phoneNumber;
+        participantDetail["Category"] = participant._doc.category;
+        participantDetail["Institution"] = participant._doc.institution;
+        participantDetail["Institution Address"] =
+          participant._doc.institutionAddress;
+        participantDetail["State"] = participant._doc.state;
+        participantDetail["Local Govt. Area"] = participant._doc.localGovtArea;
+        participantDetail["Denomination"] = participant._doc.denomination;
+        participantDetail["Registration Officer"] =
+          participant._doc.registrationOfficer;
+        participantDetail["Officer Phone No"] =
+          participant._doc.registrationOfficerPhoneNumber;
+        participantDetail["Languages Spoken"] =
+          participant._doc.languagesSpoken;
+        console.log(participantDetail)
+        return participantDetail;
       }
-      delete participant._id;
-      delete participant.sid;
-      delete participant._v;
-      participant.id = i + 1;
       return participant;
     });
     var xls = json2xls(formattedParticipants, {
-      style: path.join(__dirname, "style.xml"),
-      fields: {
-        id: "Id",
-        fullName: "Full Name",
-        phoneNumber: "Phone Number",
-        institution: "Institution/PPA",
-        state: "State of Origin",
-        localGovtArea: "Local Govt. Area",
-        denomination: "Denomination",
-        registrationOfficer: "Registration Officer",
-        registrationOfficerPhoneNumber: "Reg. Officer Num.",
-        languagesSpoken: "Languages",
-        institutionAddress: "Institution/PPA Address",
-        category: "Category"
+      style: path.join(__dirname, "styles.xml"),
+      fields: 
+      {  "Id": "string" ,
+        "Full Name": "string" ,
+        "Phone Number": "string" ,
+        "Category": "string" ,
+        "Institution": "string" ,
+        "Institution Address": "string" ,
+        "State": "string" ,
+        "Local Govt. Area": "string" ,
+        "Denomination": "string" ,
+        "Registration Officer": "string" ,
+        "Officer Phone No": "string" ,
+        "Languages Spoken": 'string',
       }
     });
     fs.writeFileSync(
@@ -183,5 +194,23 @@ export const DownloadParticipantList = async (req, res) => {
       message: "Error Downloading Participant List",
       error: err.message
     });
+  }
+};
+
+export const GetSummary = async (req, res) => {
+  try {
+    let [participantsCount, regOfficerCount] = await Promise.all([
+      Participant.find().count(),
+      Users.find().count()
+    ]);
+    return res.json({
+      participantsCount,
+      regOfficerCount
+    });
+    
+  } catch (err) {
+    res.status(500).json({
+      err: err.message
+    })
   }
 };
