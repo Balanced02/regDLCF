@@ -5,7 +5,18 @@ import ReactLoading from "react-loading";
 import DefaultLayout from "./containers/DefaultLayout";
 
 function Loading() {
-  return <ReactLoading type="bubbles" color="#20a8d8" style={{ flex: 1 }} />;
+  return (
+    <div
+      style={{
+        position: "fixed",
+        top: "50%",
+        left: "50%",
+        marginTop: "-50px"
+      }}
+    >
+      <ReactLoading type="spokes" color="#20a8d8" className="centerLoading" />
+    </div>
+  );
 }
 
 const ParticipantList = Loadable({
