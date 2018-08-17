@@ -6,7 +6,7 @@ import {
   InputGroupAddon,
   Card,
   CardHeader,
-  CardBlock,
+  CardBody,
   CardFooter
 } from "reactstrap";
 import { connect } from "react-redux";
@@ -158,7 +158,7 @@ class ParticipantLists extends Component {
               <InputGroupAddon addonType="append">Search</InputGroupAddon>
             </InputGroup>
           </CardHeader>
-          <CardBlock>
+          <CardBody>
             <Row>
               {this.state.participantList.length && !this.state.fetching ? (
                 <ParticipantList
@@ -168,10 +168,10 @@ class ParticipantLists extends Component {
               ) : this.state.fetching ? (
                 <Loading />
               ) : (
-                <CardBlock> Ooops, No Results Found... </CardBlock>
+                <CardBody> Ooops, No Results Found... </CardBody>
               )}
             </Row>
-          </CardBlock>
+          </CardBody>
           <CardFooter>
             Showing {this.state.participantList.length} of {this.state.count}
           </CardFooter>

@@ -1,9 +1,9 @@
 import React from "react";
-import { Card, CardBlock, Table, CardFooter, Button } from "reactstrap";
+import { Card, CardBody, Table, CardFooter, Button } from "reactstrap";
 
 export default ({ data, downloadList }) => (
   <Card className="card-accent-primary">
-    <CardBlock>
+    <CardBody>
       <Table responsive striped hover bordered>
         <thead>
           <tr>
@@ -30,7 +30,7 @@ export default ({ data, downloadList }) => (
           ))}
         </tbody>
       </Table>
-    </CardBlock>
+    </CardBody>
     <CardFooter>
       <Button onClick={() => downloadList()} outline color="link">
         {" "}
