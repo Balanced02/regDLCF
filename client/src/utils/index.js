@@ -23,7 +23,6 @@ export const callApi = (url, data, method) => {
     }
     fetch(`${jwtConfig.fetchUrl}api${url}`, options)
       .then(res => {
-        console.log(res);
         if (res.ok) return res.json();
         reject(new Error(res.statusText));
       })
