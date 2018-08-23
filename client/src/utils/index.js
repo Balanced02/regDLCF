@@ -52,7 +52,6 @@ export const callApiToDownloadExcel = (url, data, method) => {
     }
     fetch(`${jwtConfig.fetchUrl}api${url}`, options)
       .then(res => {
-        console.log(res);
         if (res.ok) return res.arrayBuffer();
         reject(new Error(res.statusText));
       })
