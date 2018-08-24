@@ -32,6 +32,8 @@ export const startRegister = formData => {
     dispatch(startLoading());
     callApi("/auth/register", formData, "POST")
       .then(data => {
+        localStorage.setItem("jwt", data.token);
+        localStorage.setItem("rompiendo", JSON.stringify(data.user._doc));
         dispatch(stopLoading());
         dispatch(showInfo("Registration Successful! Please go to Login"));
         console.log(data);

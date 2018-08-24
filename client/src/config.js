@@ -1,4 +1,4 @@
 export const jwtConfig = {
-  fetchUrl: "http://localhost:1337/",
+  fetchUrl: "http://192.168.0.101:1337/",
   secretKey: "secretKey"
 };

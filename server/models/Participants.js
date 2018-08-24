@@ -25,10 +25,6 @@ const participantsSchema = new Schema({
     type: String,
     required: true
   },
-  localGovtArea: {
-    type: String,
-    required: true
-  },
   denomination: {
     type: String,
     required: true

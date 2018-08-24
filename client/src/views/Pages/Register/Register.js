@@ -18,7 +18,6 @@ class Register extends Component {
         username: '',
         password: '',
         passwordC: '',
-        email: '',
         userType: 'admin',
         phoneNumber: ''
       }
@@ -27,10 +26,9 @@ class Register extends Component {
   }
 
   submit(){
-    const { username, password, passwordC, email, phoneNumber, fullName } = this.state.userDetails
+    const { username, password, passwordC, phoneNumber, fullName } = this.state.userDetails
     if (!fullName) return this.props.dispatch(showError('Please provide your full name'))
     if (!username) return this.props.dispatch(showError('Username field is required'))
-    if (!email) return this.props.dispatch(showError('Email is required'))
     if (!password) return this.props.dispatch(showError('Please provide a password'))
     if (!passwordC) return this.props.dispatch(showError('Please confirm your password'))
     if (!phoneNumber || phoneNumber.length < 9) return this.props.dispatch(showError('Please provide a valid phone Number'))
@@ -83,7 +81,7 @@ class Register extends Component {
 }
 
   render() {
-    const { fullName, username, password, passwordC, email, phoneNumber } = this.state.userDetails
+    const { fullName, username, password, passwordC, phoneNumber } = this.state.userDetails
     return (
       <div className="app flex-row align-items-center">
         <Container>
@@ -108,12 +106,6 @@ class Register extends Component {
                       </InputGroupText>
                     </InputGroupAddon>
                     <Input type="text" placeholder="Username" name='username' onChange={(e) => this.handleInputChange(e)} value={username} />
-                  </InputGroup>
-                  <InputGroup className="mb-3">
-                    <InputGroupAddon addonType="prepend">
-                      <InputGroupText>@</InputGroupText>
-                    </InputGroupAddon>
-                    <Input type="text" placeholder="Email" name='email' onChange={(e) => this.handleInputChange(e)} value={email} />
                   </InputGroup>
                   <InputGroup className="mb-3">
                     <InputGroupAddon addonType="prepend">

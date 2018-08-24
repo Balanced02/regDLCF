@@ -98,37 +98,7 @@ export default ({
           </Input>
         </FormGroup>
       </Col>
-      <Col xs="6">
-        <FormGroup>
-          <Label for="exampleText">Local Govt.</Label>
-          <Input
-            type="select"
-            name="localGovtArea"
-            id="exampleText"
-            value={data.localGovtArea}
-            onChange={e => handleInputChange(e)}
-          >
-            <option value="" selected disabled>
-              {" "}
-              Select One{" "}
-            </option>
-            {states.map(
-              state =>
-                data.state
-                  ? states
-                      .filter(state => state.state.name === data.state)[0]
-                      .state.locals.map(local => (
-                        <option value={local.name} key={local.id}>
-                          {" "}
-                          {local.name}{" "}
-                        </option>
-                      ))
-                  : ""
-            )}
-          </Input>
-        </FormGroup>
-      </Col>
-    </Row>
+      <Col xs='6' >
     <FormGroup>
       <Label for="exampleEmail">Denomination</Label>
       <Input
@@ -141,6 +111,8 @@ export default ({
       />
       <FormText color="muted">E.g. DLCF, NCCF, RCCG</FormText>
     </FormGroup>
+      </Col>
+    </Row>
     <FormGroup>
       <Label for="exampleEmail">Languages Spoken</Label>
       <Input

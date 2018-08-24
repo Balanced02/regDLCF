@@ -26,11 +26,6 @@ const usersSchema = new Schema({
     trim: true,
     required: true,
   },
-  email: {
-    type: String,
-    required: true,
-    trim: true,
-  },
   passport: {
     type: String,
     // required: true,

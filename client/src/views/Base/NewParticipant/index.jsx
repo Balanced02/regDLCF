@@ -18,7 +18,6 @@ class NewProduct extends Component {
         phoneNumber: "",
         gender: "",
         state: "Nasarawa State",
-        localGovtArea: "",
         denomination: "",
         languagesSpoken: "",
         institution: "",
@@ -40,7 +39,6 @@ class NewProduct extends Component {
     if (name === "state") {
       expectedInputs = {
         ...expectedInputs,
-        localGovtArea: ""
       };
     }
     this.setState({
@@ -140,7 +138,6 @@ class NewProduct extends Component {
         phoneNumber: "",
         gender: "",
         state: "Nasarawa State",
-        localGovtArea: "",
         denomination: "",
         languagesSpoken: "",
         institution: "",

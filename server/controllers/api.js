@@ -46,9 +46,6 @@ export const GetParticipants = async (req, res) => {
           state: search
         },
         {
-          localGovtArea: search
-        },
-        {
           institution: search
         }
       ]
@@ -152,7 +149,6 @@ export const DownloadParticipantList = async (req, res) => {
         participantDetail["Institution Address"] =
           participant._doc.institutionAddress;
         participantDetail["State"] = participant._doc.state;
-        participantDetail["Local Govt. Area"] = participant._doc.localGovtArea;
         participantDetail["Denomination"] = participant._doc.denomination;
         participantDetail["Registration Officer"] =
           participant._doc.registrationOfficer;
@@ -175,7 +171,6 @@ export const DownloadParticipantList = async (req, res) => {
         "Institution": "string" ,
         "Institution Address": "string" ,
         "State": "string" ,
-        "Local Govt. Area": "string" ,
         "Denomination": "string" ,
         "Registration Officer": "string" ,
         "Officer Phone No": "string" ,

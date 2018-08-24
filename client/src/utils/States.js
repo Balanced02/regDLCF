@@ -945,6 +945,10 @@ export default [
       id: 12,
       locals: [
         {
+          name: "Akoko Edo",
+          id: 18
+        },
+        {
           name: "Egor",
           id: 1
         },
@@ -1020,6 +1024,10 @@ export default [
       name: "Ekiti State",
       id: 13,
       locals: [
+        {
+          name: "Ado Ekiti",
+          id: 16
+        },
         {
           name: "Efon",
           id: 1
