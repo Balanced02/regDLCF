@@ -141,7 +141,7 @@ export default ({
           <NavLink
             className={classnames({ active: activeTab === "2" })}
             onClick={() => {
-              toggle("2", "PCM");
+              toggle("2", "CM");
             }}
           >
             CM
@@ -185,7 +185,7 @@ export default ({
             </FormText>
           </FormGroup>
           <FormGroup>
-            <Label for="exampleEmail">School Address</Label>
+            <Label for="exampleEmail">Home Address</Label>
             <Input
               type="textarea"
               name="institutionAddress"

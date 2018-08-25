@@ -3249,6 +3249,13 @@ export default [
           id: 13
         }
       ]
+    },
+  },
+  {
+    state: {
+      name: 'Non-Nigerian',
+      id: 39,
+      locals: []
     }
   }
 ]

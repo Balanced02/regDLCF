@@ -58,7 +58,7 @@ export const GetParticipants = async (req, res) => {
     let [count, participants] = await Promise.all([
       Participant.find(searchQuery).count(),
       Participant.find(searchQuery)
-        .sort("created")
+        .sort("-created")
         .skip(page * 25 - 25)
         .limit(25)
     ]);
